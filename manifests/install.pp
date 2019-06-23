@@ -1,11 +1,6 @@
 # == Class: jackett::install
 #
 class jackett::install (
-  $manage_epel         = $jackett::manage_epel,
-  $install_mono        = $jackett::install_mono,
-  $mono_baseurl        = $jackett::mono_baseurl,
-  $mono_gpgkey         = $jackett::mono_gpgkey,
-  $mono_packages       = $jackett::mono_packages,
   $additional_packages = $jackett::additional_packages,
   $user                = $jackett::user,
   $group               = $jackett::user,
@@ -16,25 +11,6 @@ class jackett::install (
   $archive_url         = $jackett::archive_url,
   $executable          = $jackett::executable,
 ) {
-
-  if $manage_epel {
-    package { 'epel-release':
-      ensure => 'installed',
-    }
-  }
-
-  if $install_mono {
-    yumrepo { 'mono':
-      ensure   => present,
-      baseurl  => $mono_baseurl,
-      gpgkey   => $mono_gpgkey,
-      gpgcheck => true,
-    } ->
-
-    package { $mono_packages:
-      ensure => installed,
-    }
-  }
 
   $_additional_packages = $additional_packages ? {
     Array   => true,

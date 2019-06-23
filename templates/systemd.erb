@@ -6,7 +6,10 @@ After=syslog.target network.target
 User=<%= @user %>
 Group=<%= @group %>
 Type=simple
-ExecStart=/usr/bin/mono <%= @base_path %>/<%= @executable %>
+SyslogIdentifier=jackett
+Restart=always
+RestartSec=5
+ExecStart=<%= @base_path %>/<%= @executable %> --NoRestart
 
 TimeoutStopSec=20
 [Install]

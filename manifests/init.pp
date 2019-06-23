@@ -1,11 +1,6 @@
 # == Class: jackett
 #
 class jackett (
-  $manage_epel         = $jackett::params::manage_epel,
-  $install_mono        = $jackett::params::install_mono,
-  $mono_baseurl        = $jackett::params::mono_baseurl,
-  $mono_gpgkey         = $jackett::params::mono_gpgkey,
-  $mono_packages       = $jackett::params::mono_packages,
   $additional_packages = $jackett::params::additional_packages,
   $user                = $jackett::params::user,
   $group               = $jackett::params::user,
