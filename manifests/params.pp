@@ -1,12 +1,15 @@
 class jackett::params {
 
-  $additional_packages = ['curl',
-    'Ubuntu'  => 'libcurl4-openssl-dev',
-    'Debian'  => 'libcurl4-openssl-dev',
-    'CentOS'  => 'libcurl-devel',
-    'RHEL'    => 'libcurl-devel',
-    'Fedora'  => 'libcurl-devel',
-    default => 'libcurl_dev',
+  $additional_packages = [
+    'curl',
+    $::operatingsystem ? {
+      'Ubuntu'  => 'libcurl4-openssl-dev',
+      'Debian'  => 'libcurl4-openssl-dev',
+      'CentOS'  => 'libcurl-devel',
+      'RHEL'    => 'libcurl-devel',
+      'Fedora'  => 'libcurl-devel',
+      default => 'libcurl_dev',
+    }
   ]
   $user                = 'jackett'
   $base_path           = '/opt/Jackett'
