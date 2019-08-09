@@ -43,6 +43,7 @@ class jackett::install (
     group        => $group,
   } ->
   exec { 'move jackett files to correct folder':
+    path    => ['/usr/bin', '/bin'],
     command => "mv ${base_path}/Jackett/* ${base_path}",
     creates => "${base_path}/${executable}",
   }
