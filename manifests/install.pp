@@ -23,17 +23,6 @@ class jackett::install (
     }
   }
 
-  group { $group:
-    ensure => present,
-  }
-
-  user { $user:
-    ensure     => present,
-    shell      => '/sbin/nologin',
-    groups     => $group,
-    managehome => true,
-  }
-
   file { [ $base_path, $config_folder, $app_folder ]:
     ensure => directory,
     owner  => $user,
